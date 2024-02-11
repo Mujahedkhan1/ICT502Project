@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+	
+	
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: red;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginSection">
+        <form id="loginForm" action="index.html" method="post" onsubmit="return validateLogin()">
+           
+			<h2>Order Management System Login</h2>
+			
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Login">
+        </form>
+        <p>Don't have an account? <a href="#" onclick="toggleForm()">Create One</a></p>
+    </div>
+
+    <div id="registrationSection" style="display:none;">
+        <form id="registrationForm" action="#" method="post" onsubmit="return createUser()">
+            <h2>Create Account</h2>
+            <label for="newFullName">Full Name:</label>
+            <input type="text" id="newFullName" name="newFullName" required>
+            <label for="newUsername">Username:</label>
+            <input type="text" id="newUsername" name="newUsername" required>
+            <label for="newPassword">Password:</label>
+            <input type="password" id="newPassword" name="newPassword" required>
+            <input type="submit" value="Create Account">
+        </form>
+        <p>Already have an account? <a href="#" onclick="toggleForm()">Login</a></p>
+    </div>
+
+    <script>
+        function validateLogin() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (username === "Test" && password === "Test") {
+                return true; // Proceed to home.html
+            } else {
+                alert("Incorrect username or password");
+                return false; // Prevent form submission
+            }
+        }
+
+        function toggleForm() {
+            var loginSection = document.getElementById("loginSection");
+            var registrationSection = document.getElementById("registrationSection");
+
+            if (loginSection.style.display === "none") {
+                loginSection.style.display = "block";
+                registrationSection.style.display = "none";
+            } else {
+                loginSection.style.display = "none";
+                registrationSection.style.display = "block";
+            }
+        }
+
+        function createUser() {
+            var newFullName = document.getElementById("newFullName").value;
+            var newUsername = document.getElementById("newUsername").value;
+            var newPassword = document.getElementById("newPassword").value;
+
+            // Here you would typically send the new user data to a server to create the account
+            alert("Account created successfully for " + newFullName + " (" + newUsername + ")");
+            return true; // Allow form submission
+        }
+    </script>
+</body>
+</html>
